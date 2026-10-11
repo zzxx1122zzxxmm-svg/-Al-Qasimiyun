@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدولة القاسمية - آل قاسم المجد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,700&family=Reem+Kufi:wght@700&family=Cairo:wght@300;400;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #060913;
+            color: #f1f5f9;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .font-royal { font-family: 'Amiri', serif; }
+        .font-ornate { font-family: 'Reem Kufi', 'Amiri', serif; letter-spacing: 1px; }
+
+        /* شاشة العرض فول سكرين باستخدام الصورة الملكية */
+        #splash-screen {
+            background: linear-gradient(to top, rgba(6, 9, 19, 0.95), rgba(6, 9, 19, 0.25)), 
+                        url('1000307350_3.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #fff2a3 30%, #aa771c 70%, #f9e29c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.9));
+        }
+
+        .royal-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.85), rgba(8, 13, 23, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .royal-card:hover {
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- 1. شاشة العرض (Splash Screen) -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col justify-between items-center text-center p-8 transition-all duration-700">
+        <div class="pt-10">
+            <span class="text-xs font-bold tracking-[0.3em] text-amber-300 bg-black/70 px-6 py-2 rounded-full border border-amber-500/50">
+                الديوان الملكي السيادي • الدولة القاسمية
+            </span>
+        </div>
+
+        <div class="space-y-4 max-w-2xl bg-black/40 p-8 rounded-3xl backdrop-blur-md border border-amber-500/30 shadow-2xl">
+            <h1 class="text-5xl sm:text-7xl font-bold font-ornate gold-gradient-text leading-tight">
+                آل قاسم المجد
+            </h1>
+            <p class="text-slate-300 text-sm tracking-[0.2em] font-royal opacity-90">
+                منصة السيادة والقرار والأركان العليا
+            </p>
+        </div>
+
+        <div class="pb-12 w-full max-w-xs">
+            <button onclick="enterMainApp()" class="w-full py-4 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black rounded-2xl shadow-2xl shadow-amber-500/50 transition transform hover:scale-105 active:scale-95 text-sm cursor-pointer border border-amber-200/70 font-ornate">
+                دخول الديوان الملكي 👑
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. الشاشة الرئيسية والاقسام -->
+    <div id="main-app" class="hidden min-h-screen flex-col justify-between p-6 sm:p-10 max-w-7xl mx-auto w-full">
+        
+        <header class="flex justify-between items-center border-b border-amber-500/20 pb-6 sticky top-0 bg-[#060913]/90 backdrop-blur-md z-30 pt-4">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="returnToSplash()">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-2xl shadow-lg">
+                    ⚜️
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold font-ornate gold-gradient-text">الدولة القاسمية</h2>
+                    <p class="text-[10px] text-slate-400 tracking-widest">البوابة المركزية للسيادة</p>
+                </div>
+            </div>
+
+            <button onclick="returnToSplash()" class="px-4 py-2 bg-slate-900 border border-amber-500/30 text-amber-300 rounded-xl text-xs font-bold transition cursor-pointer hover:bg-slate-800">
+                شاشة العرض 🖼️
+            </button>
+        </header>
+
+        <main class="my-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            
+            <!-- القسم 1: العائلة الحاكمة -->
+            <div onclick="openFamilySection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">👑</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">العائلة الحاكمة</h3>
+                    <p class="text-xs text-slate-400 mt-1">القيادة المجيدة والأمراء الأجلاء</p>
+                </div>
+            </div>
+
+            <!-- القسم 2: المناصب العليا -->
+            <div onclick="openTopPositionsSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">🏛️</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">المناصب العليا</h3>
+                    <p class="text-xs text-slate-400 mt-1">المستشارون والقيادات العليا في الدولة</p>
+                </div>
+            </div>
+
+            <!-- القسم 3: الوزارات -->
+            <div onclick="openMinistriesSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">👔</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">الوزارات</h3>
+                    <p class="text-xs text-slate-400 mt-1">الحقائب الوزارية والوزراء</p>
+                </div>
+            </div>
+
+            <!-- القسم 4: الولايات -->
+            <div onclick="openProvincesSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">🗺️</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">الولايات</h3>
+                    <p class="text-xs text-slate-400 mt-1">الخريطة الإدارية والولايات التابعة</p>
+                </div>
+            </div>
+
+            <!-- القسم 5: الولاة -->
+            <div onclick="openGovernorsSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">⚜️</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">الولات</h3>
+                    <p class="text-xs text-slate-400 mt-1">حكام الولايات والإدارات الإقليمية</p>
+                </div>
+            </div>
+
+            <!-- القسم 6: المديريات المستقلة -->
+            <div onclick="openDirectoratesSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">🏢</div>
+                <div>
+                    <h3 class="font-bold text-base text-amber-300">المديريات المستقلة</h3>
+                    <p class="text-xs text-slate-400 mt-1">الهيئات والدوائر الخدمية والسيادية</p>
+                </div>
+            </div>
+
+            <!-- القسم 7: تحالف القوة الدولي -->
+            <div onclick="openAllianceSection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3 border-l-4 border-l-sky-500">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-2xl">⚔️</div>
+                <div>
+                    <h3 class="font-bold text-base text-sky-300">تحالف القوة الدولي</h3>
+                    <p class="text-xs text-slate-400 mt-1">الرئيس، المؤسسون، الأعضاء والمهام</p>
+                </div>
+            </div>
+
+            <!-- القسم 8: الجيش القاسمي -->
+            <div onclick="openArmySection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3 border-l-4 border-l-emerald-500">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-2xl">🛡️</div>
+                <div>
+                    <h3 class="font-bold text-base text-emerald-300">الجيش القاسمي</h3>
+                    <p class="text-xs text-slate-400 mt-1">القوات المسلحة، الدفاع، والشرطة والأمن</p>
+                </div>
+            </div>
+
+            <!-- القسم 9: السياسة الخارجية -->
+            <div onclick="openForeignPolicySection()" class="royal-card p-6 rounded-2xl cursor-pointer space-y-3 border-l-4 border-l-purple-500">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-2xl">🌐</div>
+                <div>
+                    <h3 class="font-bold text-base text-purple-300">السياسة الخارجية</h3>
+                    <p class="text-xs text-slate-400 mt-1">العلاقات الدولية، السفارات والدبلوماسية</p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center text-xs text-slate-500 border-t border-slate-900 pt-6 pb-2">
+            جميع الحقوق محفوظة • الديوان الملكي للدولة القاسمية
+        </footer>
+
+    </div>
+
+    <!-- نافذة منبثقة لعرض البيانات -->
+    <div id="universal-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+        <div class="royal-card p-6 sm:p-8 rounded-3xl w-full max-w-2xl space-y-5 border border-amber-500/50 shadow-2xl max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-amber-500/25 pb-3">
+                <h3 id="modal-heading" class="font-bold font-royal text-xl gold-gradient-text">عنوان القسم</h3>
+                <button onclick="closeUniversalModal()" class="text-slate-400 hover:text-white font-bold cursor-pointer text-lg">✕</button>
+            </div>
+            <div id="modal-content" class="text-xs text-slate-300 leading-relaxed bg-slate-950/90 p-5 rounded-xl border border-slate-900 space-y-3">
+                التفاصيل...
+            </div>
+            <button onclick="closeUniversalModal()" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs cursor-pointer">
+                إغلاق النافذة
+            </button>
+        </div>
+    </div>
+
+    <!-- كود التفاعل والبيانات الكاملة -->
+    <script>
+        function enterMainApp() {
+            const splash = document.getElementById('splash-screen');
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                document.getElementById('main-app').classList.add('flex');
+            }, 600);
+        }
+
+        function returnToSplash() {
+            const splash = document.getElementById('splash-screen');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('flex');
+            splash.classList.remove('hidden');
+            setTimeout(() => { splash.style.opacity = '1'; }, 50);
+        }
+
+        function showModal(title, htmlContent) {
+            document.getElementById('modal-heading').innerText = title;
+            document.getElementById('modal-content').innerHTML = htmlContent;
+            const modal = document.getElementById('universal-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeUniversalModal() {
+            const modal = document.getElementById('universal-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 1. العائلة الحاكمة
+        function openFamilySection() {
+            let html = `
+                <div class="space-y-4">
+                    <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-center">
+                        <p class="font-bold text-amber-300 text-sm">القيادة المجيدة درع الشعب و اسياد العالم</p>
+                        <p class="text-slate-100 font-bold mt-2 text-sm">جلالة السلطان الماجد منذر خان المعظم</p>
+                        <p class="text-[11px] text-amber-400">سلطان الدولة و القلوب و ولي امر الشعب</p>
+                    </div>
+                    <div class="space-y-2">
+                        <strong class="text-amber-300 block border-r-2 border-amber-500 pr-2">افراد العائلة:</strong>
+                        <ul class="space-y-2 text-slate-200">
+                            <li class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>سمو الامير ياسر:</strong> البذرة الكبيرة المحبوب امل الشعب والمستشار العام لجلالته</li>
+                            <li class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>سمو الامير ولي العهد الامير عبدالله:</strong> الحليم الحكيم سلطان المستقبل</li>
+                            <li class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>سمو الامير علي:</strong> الشجاع و الوقور فارس الهيجاء</li>
+                            <li class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>سمو الامير فارس:</strong> من شابه اباه ما ضلم</li>
+                            <li class="p-2.5 bg-slate-900 rounded border border-slate-800"><strong>سمو الامير كينان:</strong> اخر العنقود الحليم الوقور القريب للقلوب</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            showModal('العائلة الحاكمة', html);
+        }
+
+        // 2. المناصب العليا
+        function openTopPositionsSection() {
+            let items = [
+                {name: "سمو الامير عبدالله", title: "ولي العهد"},
+                {name: "سمو الامير ياسر", title: "المستشار العام و نائب السلطان"},
+                {name: "السيد موسى الصدر", title: "المرجع الديني الاعلى"},
+                {name: "ياسين باشة", title: "والي الولات"},
+                {name: "جعفر محمد باشة", title: "رئيس الوزراء"},
+                {name: "علي خليل باشة", title: "رئيس مجلس الشعب"},
+                {name: "زيد حوشي", title: "رئيس اركان الجيش"}
+            ];
+            let html = '<div class="space-y-2.5">';
+            items.forEach(i => {
+                html += `
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                        <p class="font-bold text-slate-100 text-sm">${i.name}</p>
+                        <p class="text-[11px] text-amber-400 font-light mt-0.5">${i.title}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            showModal('المناصب العليا', html);
+        }
+
+        // 3. الوزارات
+        function openMinistriesSection() {
+            let mins = [
+                {min: "رئيس الوزراء", minstr: "السيد جعفر محمد باقر"},
+                {min: "وزير العدل", minstr: "السيد ضياء جعفر"},
+                {min: "وزير الامن", minstr: "السيد عبد الامير يار الله"},
+                {min: "وزير الصحه", minstr: "السيد جميل حمدي"},
+                {min: "وزير الخارجيه", minstr: "جهاد حداذ"},
+                {min: "وزارة التخطيط", minstr: "عز الدين عدنان"},
+                {min: "وزارة الاعلام و الاتصالات", minstr: "زيد طارق"},
+                {min: "وزارة التربية و التعليم العالي و البحث", minstr: "السيد حيدر الكعبي"},
+                {min: "وزارة الطاقة", minstr: "السيد علي عبد النبي"},
+                {min: "وزارة المالية", minstr: "السيد سليمان الحبيب"}
+            ];
+            let html = '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">';
+            mins.forEach(m => {
+                html += `
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                        <p class="font-bold text-slate-100 text-xs">${m.min}</p>
+                        <p class="text-[11px] text-amber-400 font-light mt-1">${m.minstr}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            showModal('الوزارات والوزراء', html);
+        }
+
+        // 4. الولايات
+        function openProvincesSection() {
+            let provs = [
+                "ولاية المركز العراق العاصمة", "ولاية السعودية", "قطر", "الامارات", "عمان", "كويت", 
+                "البحرين", "اليمن", "سوريا", "فلسطين", "لبنان", "الاردن", "المغرب", 
+                "تونس", "مصر", "ليبيا", "السودان", "الصومال", "قبرص", "الشمال", "خوز ستان"
+            ];
+            let html = '<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">';
+            provs.forEach(p => {
+                let name = p.startsWith('ولاية') ? p : 'ولاية ' + p;
+                html += `<li class="p-2.5 bg-slate-900 rounded-xl border border-slate-800 text-amber-300 font-semibold text-xs">${name}</li>`;
+            });
+            html += '</ul>';
+            showModal('الولايات', html);
+        }
+
+        // 5. الولاة
+        function openGovernorsSection() {
+            let govs = [
+                "محمد نور السعودية", "علي الحبسي عمان", "بدر المطوع الكويت", "سماعيل مطر الامارات", 
+                "خلفان براهيم قطر", "بدر الميمني البحرين", "علي النونو اليمن", "دريد لحام لبنان", 
+                "سردار ازمون سوريا", "موسى التعمري الاردن", "عدي الدباغ الاردن", "مهدي بن عطية المغرب", 
+                "محمد ابو تريكة مصر", "يوسف المساكني تونس", "محمد ابو جبل ليبيا", "امين حبيب الله الصومال", 
+                "حسن اديب السودان", "باسل ياخور قبرص", "علي رضا جيهان بخش خوز ستان", "بوراك الشمال"
+            ];
+            let html = '<ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">';
+            govs.forEach(g => {
+                html += `<li class="p-2.5 bg-slate-900 rounded-xl border border-slate-800 text-slate-200 text-xs">${g}</li>`;
+            });
+            html += '</ul>';
+            showModal('الولات', html);
+        }
+
+        // 6. المديريات المستقلة
+        function openDirectoratesSection() {
+            let dirs = [
+                "مديرية الزراعه و الثروة الحيوانية", "البيئة", "الطرق و الجسور", "البلدية", "التجارة", 
+                "الصناعة", "الذمكاء الاصطناعي", "الاحصاء", "الاوقاف و المساجد", "السياحه", "النقل", 
+                "الثروة البشرية", "العمل و الشؤون الاجتماعية", "الثقافة", "الموارد المائية", "شؤون الرياضة", 
+                "الشهداء", "السجناء", "المراة", "الهجرة و المغتربين", "ديوان وقف السني", "ديوان الوقف الشيعي", 
+                "الكتلوكية العليا", "مجلس القضاء الاعلى", "الاعمار و الاسكان", "هيئة النزاهة", "الحج و العمرة", 
+                "الطاقة الذرية الوطنية", "حقوق الانسان", "حقوق الحيوان", "التلفزيون القاسمي TK TV"
+            ];
+            let html = '<div class="space-y-2">';
+            dirs.forEach(d => {
+                let desc = "مسؤولة عن تنظيم قطاع " + d.replace("مديرية ", "") + " وتطوير استراتيجياته وتقديم الخدمات الرسمية التابعة للدولة.";
+                if(d.includes("التلفزيون")) desc = "المنصة الإعلامية الرسمية الناطقة باسم الدولة والديوان السيادي لبث البرامج والأخبار.";
+                html += `
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
+                        <strong class="text-amber-300 block text-xs">${d}</strong>
+                        <span class="text-[11px] text-slate-400 block">${desc}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            showModal('المديريات المستقلة واختصاصاتها', html);
+        }
+
+        // 7. تحالف القوة الدولي
+        function openAllianceSection() {
+            let html = `
+                <div class="space-y-4">
+                    <div class="p-3 bg-slate-900 rounded-xl border border-amber-500/30 space-y-1">
+                        <strong class="text-amber-400 text-xs block">👑 الرئيس والمؤسسون:</strong>
+                        <p class="text-slate-200 text-xs"><strong>الرئيس:</strong> احمد عبد الحق (عن الدولة القاسمية)</p>
+                        <p class="text-slate-300 text-[11px] mt-1"><strong>المؤسسون:</strong> الدولة القاسمية، روسيا، تركيا، ايران، الصين، البرازيل، كوريا الشمالية، جنوب افريقيا.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-700 space-y-1">
+                        <strong class="text-amber-400 text-xs block">🌐 الأعضاء:</strong>
+                        <p class="text-slate-300 text-[11px] leading-relaxed">الدولة القاسمية، تركيا، روسيا، فلندا، البانيا، كوسوفو، البوسنا والهرسك، ليتوانيا، روسيا البيضاء، الشيشان، غانا، ساحل العاج، سنغال، اوغندا، موريتانيا، جزر القمر، اوغندا، الصين، كوريا الشمالية، اندنوسيا، سنغافورا، لاوس، فيتنام، تايلاند، كمبوديا، تايوان، جورجيا، ايران، افغانستان، الهند، باكستان، اوزبكستان، طاجكتان، قيرغزستان، اذربيجان...</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-900 rounded-xl border border-sky-500/30 space-y-2">
+                        <strong class="text-amber-400 text-xs block">⚔️ المهام والواجبات:</strong>
+                        <p class="text-slate-200 text-xs leading-relaxed"><strong>الواجبات:</strong> حماية جميع الدول الأعضاء، قرار السلم والحرب مشترك ضد كل الدول. من يمتلك خصومة مع عضو يمتلك نفس الخصومة مع المجلس جميعه. لدى الأعضاء واجبات مشتركة مثل التعاون المالي، الصحي، الخدمي، والتنسيق الامني المستمر، مع وجود قواعد عسكرية لتحالف القوة الدولي في اغلب الدول الاعضاء المؤسسين. يمتلك التحالف جيشاً متكوناً من جميع الدول الأعضاء مجهزا بآليات ومعدات حديثة جداً ويبلغ عدد الجيش حوالي مليون عنصر مدعوم بالجيوش المحلية لجميع دول الأعضاء.</p>
+                        <p class="text-slate-200 text-xs leading-relaxed pt-1"><strong>المهام:</strong> المهام مشتركة بين جميع الدول واعتماد القرار الواحد بكل شيء.</p>
+                    </div>
+                </div>
+            `;
+            showModal('تحالف القوة الدولي', html);
+        }
+
+        // 8. الجيش القاسمي
+        function openArmySection() {
+            let html = `
+                <div class="space-y-4">
+                    <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs leading-relaxed text-slate-200">
+                        عناصر الجيش القاسمي حوالي ٤ مليون و٧٣٥ الف و٨٠٠ عنصر مجهزين بمواقع مناسبة ومعدات حديثة و اسلحه متطورة و مرجعهم الرئيسي وزارة الامن و قائدهم العام جلالة السلطان و قائدهم المباشر وزير الامن.
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
+                            <strong class="text-amber-400 text-xs block">🛡️ مديرية الدفاع (قائد الجيش: قائد أركان الجيش):</strong>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">تتكون من: قواه برية، جوية، بحرية، قوات خاصة، قوات حرب شوارع، استخبارات عسكرية، واستخبارات خارجية.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1">
+                            <strong class="text-amber-400 text-xs block">👮 مديرية الداخلية (يشرف عليها وزير الامن بشكل مباشر):</strong>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">تتكون من: شرطه محلية، شرطة اقتصادية، شرطة مرور، قوات الرد السريع، شرطة السياحة، شرطة حماية الأسرى، مكافحة المخدرات، مكافحة الإهارب، وشرطة أمن مواقع الدولة.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showModal('الجيش القاسمي', html);
+        }
+
+        // 9. السياسة الخارجية
+        function openForeignPolicySection() {
+            let html = `
+                <div class="p-4 bg-slate-900 rounded-xl border border-purple-500/30 space-y-3 text-xs leading-relaxed text-slate-300">
+                    <p class="font-bold text-purple-300 text-sm">السلك الدبلوماسي والتمثيل الخارجي</p>
+                    <p>تدير وزارة الخارجية والسياسة الخارجية شبكة السفارات الكبرى والممثلين السامين للدولة القاسمية حول العالم، مع التركيز على توثيق أواصر التعاون مع حلفاء التحالف الدولي والدفاع عن المصالح العليا للبلاد وفق رؤية الديوان السيادي.</p>
+                </div>
+            `;
+            showModal('السياسة الخارجية', html);
+        }
+    </script>
+</body>
+</html>
